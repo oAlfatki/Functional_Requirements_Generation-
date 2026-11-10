@@ -1,75 +1,49 @@
-# React + TypeScript + Vite
+# Functional Requirements Document
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for displaying and printing a structured Functional Requirements Document (FRD). The current sample document describes **Tasheel**, a travel ticket booking and financial operations management system. The document is presented in Arabic and can be printed or saved as a PDF through the browser's print dialog.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Structured FRD sections for the project overview, functional and non-functional requirements, use cases, and workflow.
+- Data dictionary, business rules, traceability matrix, assumptions, dependencies, and sign-off sections.
+- Print-friendly document layout with page breaks and browser print/PDF support.
+- TypeScript models for the FRD content.
 
-## React Compiler
+The application currently renders bundled sample data. It does not include a data-entry interface, backend, or automatic requirements generation.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technology
 
-## Expanding the ESLint configuration
+- React 19 and TypeScript
+- Vite
+- Tailwind CSS 4
+- Base UI and Lucide icons
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Install the dependencies and start the development server:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed by Vite in your terminal.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Available Commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev      # Start the development server
+npm run build    # Type-check and create a production build in dist/
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint
 ```
+
+## Updating the Document
+
+- Edit `src/data/mockFrdData.ts` to update the project metadata and FRD content.
+- Refer to `src/types/frd.ts` for the data structure used by each section.
+- The document is assembled in `src/components/FRDDocument.tsx`; its sections are implemented in `src/components/frd/`.
+
+## Printing or Saving as PDF
+
+Use the print button in the document toolbar. In the browser's print dialog, select a printer or choose **Save as PDF**. The print stylesheet is located at `src/styles/frd-print.css`.
